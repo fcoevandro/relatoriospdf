@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8c2c0529-9a63-4dfc-bc8f-6273a82de151">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Nome_da_Dependencia" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     area.`ID` AS area_ID,
+     area.`AREA` AS area_AREA,
+     configuracao.`ID` AS configuracao_ID,
+     configuracao.`CONFIGURACAO` AS configuracao_CONFIGURACAO,
+     dependencia.`ID` AS dependencia_ID,
+     dependencia.`DEPENDENCIA` AS dependencia_DEPENDENCIA,
+     equipamento.`ID` AS equipamento_ID,
+     equipamento.`OBSERVACAO` AS equipamento_OBSERVACAO,
+     equipamento.`PATRIMONIO` AS equipamento_PATRIMONIO,
+     equipamento.`SERIAL` AS equipamento_SERIAL,
+     equipamento.`USUARIO` AS equipamento_USUARIO,
+     equipamento.`AREA_ID` AS equipamento_AREA_ID,
+     equipamento.`CONFIGURACAO_ID` AS equipamento_CONFIGURACAO_ID,
+     equipamento.`DEPENDENCIA_ID` AS equipamento_DEPENDENCIA_ID,
+     equipamento.`FABRICANTE_ID` AS equipamento_FABRICANTE_ID,
+     equipamento.`MODELO_ID` AS equipamento_MODELO_ID,
+     equipamento.`TIPOEQUIPAMENTO_ID` AS equipamento_TIPOEQUIPAMENTO_ID,
+     fabricante.`ID` AS fabricante_ID,
+     fabricante.`FABRICANTE` AS fabricante_FABRICANTE,
+     modelo.`ID` AS modelo_ID,
+     modelo.`MODELO` AS modelo_MODELO,
+     tipoequipamento.`ID` AS tipoequipamento_ID,
+     tipoequipamento.`TIPOEQUIPAMENTO` AS tipoequipamento_TIPOEQUIPAMENTO
+FROM
+     `area` area INNER JOIN `equipamento` equipamento ON area.`ID` = equipamento.`AREA_ID`
+     INNER JOIN `configuracao` configuracao ON equipamento.`CONFIGURACAO_ID` = configuracao.`ID`
+     INNER JOIN `dependencia` dependencia ON equipamento.`DEPENDENCIA_ID` = dependencia.`ID`
+     INNER JOIN `fabricante` fabricante ON equipamento.`FABRICANTE_ID` = fabricante.`ID`
+     INNER JOIN `modelo` modelo ON equipamento.`MODELO_ID` = modelo.`ID`
+     INNER JOIN `tipoequipamento` tipoequipamento ON equipamento.`TIPOEQUIPAMENTO_ID` = tipoequipamento.`ID`
+WHERE
+     dependencia_ID = (SELECT ID FROM dependencia WHERE DEPENDENCIA = $P{Nome_da_Dependencia})]]>
+	</queryString>
+	<field name="area_ID" class="java.lang.Long"/>
+	<field name="area_AREA" class="java.lang.String"/>
+	<field name="configuracao_ID" class="java.lang.Long"/>
+	<field name="configuracao_CONFIGURACAO" class="java.lang.String"/>
+	<field name="dependencia_ID" class="java.lang.Long"/>
+	<field name="dependencia_DEPENDENCIA" class="java.lang.String"/>
+	<field name="equipamento_ID" class="java.lang.Long"/>
+	<field name="equipamento_OBSERVACAO" class="java.lang.String"/>
+	<field name="equipamento_PATRIMONIO" class="java.lang.String"/>
+	<field name="equipamento_SERIAL" class="java.lang.String"/>
+	<field name="equipamento_USUARIO" class="java.lang.String"/>
+	<field name="equipamento_AREA_ID" class="java.lang.Long"/>
+	<field name="equipamento_CONFIGURACAO_ID" class="java.lang.Long"/>
+	<field name="equipamento_DEPENDENCIA_ID" class="java.lang.Long"/>
+	<field name="equipamento_FABRICANTE_ID" class="java.lang.Long"/>
+	<field name="equipamento_MODELO_ID" class="java.lang.Long"/>
+	<field name="equipamento_TIPOEQUIPAMENTO_ID" class="java.lang.Long"/>
+	<field name="fabricante_ID" class="java.lang.Long"/>
+	<field name="fabricante_FABRICANTE" class="java.lang.String"/>
+	<field name="modelo_ID" class="java.lang.Long"/>
+	<field name="modelo_MODELO" class="java.lang.String"/>
+	<field name="tipoequipamento_ID" class="java.lang.Long"/>
+	<field name="tipoequipamento_TIPOEQUIPAMENTO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="45" uuid="927c5c3e-73d0-4cae-98c0-a6363621b6ae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO POR DEPENDENCIA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="101" y="0" width="100" height="20" uuid="042952d9-1794-4211-ada8-40314acd66dd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dependencia_DEPENDENCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="101" height="20" uuid="28fe4715-9c43-4bcd-a983-fcd43a8f6062"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPENDENCIA:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="34" height="20" uuid="83b55dbc-f29d-4b07-902b-bec5fcf71cc0"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[DEP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="34" y="0" width="67" height="20" uuid="300c71e8-bb25-47da-8f39-53d04bd728f6"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[PATRIMONIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="0" width="71" height="20" uuid="ad8a2db6-b2f6-420b-a295-ff94def9bc2c"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[TIPO EQUIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="0" width="70" height="20" uuid="007ec1d1-ba7a-4093-9742-d573989412c6"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[FABRICANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="0" width="48" height="20" uuid="a4ff124f-e1a5-4c5b-84a7-d31f482579d7"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[MODELO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="165" height="20" uuid="633072a2-f0e0-4ca5-b1db-70b5b753c1ef"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CONFIGURACÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="50" height="20" uuid="86b68324-ebd9-46fb-8d35-ebf67cc411be"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SERIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="505" y="0" width="37" height="20" uuid="fbb753d8-ce10-46dd-a574-e158e333abe4"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[AREA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="542" y="0" width="58" height="20" uuid="fcc95b03-b9bc-4088-9aa4-13ad51677ede"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="0" width="202" height="20" uuid="e7dcf80f-e345-4c9a-953f-aa4123719c1f"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[OBSERVAÇÃO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="34" height="20" uuid="496d08a5-34e9-4ecb-afe5-05905f13c3fd"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dependencia_DEPENDENCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="34" y="0" width="67" height="20" uuid="cd83104d-b7f3-4819-865a-ac6fd2d6c01b"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{equipamento_PATRIMONIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="101" y="0" width="71" height="20" uuid="9aa4ed1e-f14c-497c-8c58-ef4b7813aedd"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoequipamento_TIPOEQUIPAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="0" width="70" height="20" uuid="2bbd5a52-ccfa-45c9-af88-30c479c6483d"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fabricante_FABRICANTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="242" y="0" width="48" height="20" uuid="5a27c75b-4dcb-4124-8067-d49b5ca61340"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{modelo_MODELO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="165" height="20" uuid="ab75fdb0-44e4-4502-8579-4ed6582ebbf6"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{configuracao_CONFIGURACAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="50" height="20" uuid="81211492-cae6-41d0-bca8-a91a07b06fdc"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{equipamento_SERIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="0" width="37" height="20" uuid="2c0bc6cd-02fb-4512-870c-04b6ed03f20a"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{area_AREA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="542" y="0" width="58" height="20" uuid="32f97f4b-1b4c-4fab-a680-851729a14da0"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{equipamento_USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="202" height="20" uuid="8106f54b-e433-4690-ac8a-12ab2800f0cc"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{equipamento_OBSERVACAO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="677" y="34" width="80" height="20" uuid="c9bd1866-39dd-4245-93e3-843584137619"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="762" y="34" width="40" height="20" uuid="6388908a-7bcd-4a9a-b14d-ae786b71bdf3"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="554" y="34" width="100" height="20" uuid="d502b85e-4b02-4b1b-8a12-c153845a014e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
